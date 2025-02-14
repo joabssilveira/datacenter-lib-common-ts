@@ -7,4 +7,4 @@ export const AuthorizationKeys = {
   usersGroupsAdm: 'usersGroupsAdm',
   usersAdm: 'usersAdm',
 } as const
-export type AuthorizationsKeys = typeof AuthorizationKeys[keyof typeof AuthorizationKeys]
+export type AuthorizationKeys = typeof AuthorizationKeys[keyof typeof AuthorizationKeys]
