@@ -24,7 +24,7 @@ export class AuthenticationsApiClient {
   }): Promise<IApiClientResult<IAuthentication> | undefined> {
     return await ApiClientUtils.post({
       apiUrl: this.apiUrl,
-      data: args.data, 
+      data: args.data,
       config: args.config
     })
   }
