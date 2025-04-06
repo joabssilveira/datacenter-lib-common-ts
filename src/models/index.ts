@@ -2,6 +2,7 @@ import { JwtPayload } from "jsonwebtoken"
 
 // authentication...
 
+// TODO-rename to AuthenticationTypes
 export const AuthenticationType = {
   default: 0,
   uuid: 1,
@@ -31,7 +32,7 @@ export interface IAuthenticationRequestBodyFromGoogleToken extends IAuthenticati
 export interface IAuthentication {
   uuid: string,
   userUuid: string,
-  user?: IUser,
+  // user?: IUser,
   token: string,
 }
 
@@ -69,14 +70,14 @@ export interface IWorkgroupUnitType {
 export interface IWorkgroup {
   uuid: string,
   name: string,
-  allowCreateUsersFreely?: boolean,
+  // allowCreateUsersFreely?: boolean,
 
   legalPersons?: ILegalPerson[]
 }
 
-export const legalPersonPropsNames = {
-  workgroupUuid: 'workgroupUuid'
-}
+// export const legalPersonPropsNames = {
+//   workgroupUuid: 'workgroupUuid'
+// }
 
 export const LegalPersonTypes = {
   person: 0,
@@ -113,6 +114,8 @@ export interface IUser {
   email: string,
   pwd: string,
   imageUrl?: string,
+  
+  validated?: boolean,
 
   legalPersonUuid?: string,
   legalPerson?: ILegalPerson,
@@ -128,6 +131,7 @@ export class User implements IUser {
   name: string
   login: string
   email: string
+  validated?: boolean | undefined
   pwd: string
   imageUrl?: string | undefined
   legalPersonUuid?: string | undefined
@@ -139,6 +143,7 @@ export class User implements IUser {
     name: string
     login: string,
     email: string,
+    validated?: boolean,
     pwd: string,
     imageUrl?: string | undefined,
     legalPersonUuid?: string | undefined,
@@ -149,6 +154,7 @@ export class User implements IUser {
     this.name = data.name
     this.login = data.login
     this.email = data.email
+    this.validated = data.validated
     this.pwd = data.pwd
     this.imageUrl = data.imageUrl
     this.legalPersonUuid = data.legalPersonUuid
@@ -157,7 +163,7 @@ export class User implements IUser {
   }
 
   toUserSharedData() {
-    const sharedDataKeys: (keyof IUserSharedData)[] = ['uuid', 'name', 'login', 'email', 'imageUrl']
+    const sharedDataKeys: (keyof IUserSharedData)[] = ['uuid', 'name', 'login', 'email', 'validated', 'imageUrl']
     const sharedData: Partial<IUserSharedData> = {};
     sharedDataKeys.forEach(key => {
       if (key in this) {
@@ -207,6 +213,7 @@ export interface IUserSharedData {
   name: string,
   login: string,
   email: string,
+  validated?: boolean,
   imageUrl?: string,
 }
 
