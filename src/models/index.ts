@@ -1,5 +1,5 @@
 import { JwtPayload } from "jsonwebtoken"
-import { CheckLicenseResponseItemStatus } from 'licensemanager-lib-common-ts'
+// import { CheckLicenseResponseItemStatus } from 'licensemanager-lib-common-ts'
 
 // authentication...
 
@@ -90,9 +90,9 @@ export interface IWorkgroup {
   legalPersons?: ILegalPerson[]
   integrationClients?: IIntegrationClient[]
 
-  licenseData?: {
-    status: CheckLicenseResponseItemStatus,
-  }
+  // licenseData?: {
+  //   status: CheckLicenseResponseItemStatus,
+  // }
 }
 
 // export const legalPersonPropsNames = {
