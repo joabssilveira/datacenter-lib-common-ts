@@ -15,5 +15,6 @@ export const ApiRoutesNames = {
   usersGroups: '/users-groups',
   usersGroups_authorizations: 'users-groups--authorizations',
   users_groups: '/users--groups',
-  usersGroups_invites: '/users-groups--invites'
+  usersGroups_invites: '/users-groups--invites',
+  integrationClients: '/integration-clients'
 }

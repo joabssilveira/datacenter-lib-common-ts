@@ -13,44 +13,33 @@ import { WorkgroupsApiClient } from './apiClient/workgroups'
 import { WorkgroupUnitsApiClient } from './apiClient/workgroupUnits'
 import { WorkgroupUnitsTypesApiClient } from './apiClient/workgroupUnitsTypes'
 
-import { AuthAppRoutesNames } from './authApp'
+import { AuthAppRoutesNames, } from './authApp'
 
-import { AuthenticationTokenDataProviders, AuthenticationType, IAuthentication,
-    IAuthenticationRequestBody, IAuthenticationRequestBodyDefault, IAuthenticationRequestBodyFromGoogleToken, IAuthenticationRequestBodyFromUuid,
-    IAuthenticationTokenData, IAuthenticationTokenDataDefault, IAuthenticationTokenDataGoogle, IAuthorization, ILegalPerson, 
-    IUser, IUserGroup, IUserGroup_Authorization, IUserGroup_Invite, IUserSharedData, IUser_Group, IWorkgroup, IWorkgroupUnit, 
-    IWorkgroupUnitType, LegalPersonTypes, User, UserGroup_InviteStatus,  UserGroup_InviteStatusUtils, 
- } from './models'
+import { LicenseKeys } from './license'
+
+import {
+  AuthenticationTokenDataProviders, AuthenticationType, IAuthentication,
+  IAuthenticationRequestBody, IAuthenticationRequestBodyDefault, IAuthenticationRequestBodyFromGoogleToken, IAuthenticationRequestBodyFromUuid,
+  IAuthenticationTokenData, IAuthenticationTokenDataDefault, IAuthenticationTokenDataGoogle,
+  IAuthenticationTokenDataIntegration,
+  IAuthorization,
+  IIntegrationClient,
+  ILegalPerson,
+  IUser, IUserGroup, IUserGroup_Authorization, IUserGroup_Invite, IUserSharedData, IUser_Group, IWorkgroup, IWorkgroupUnit,
+  IWorkgroupUnitType, LegalPersonTypes, User, UserGroup_InviteStatus, UserGroup_InviteStatusUtils,
+} from './models'
 import { AuthorizationKeys, } from './models/authorizations'
 
 export {
-    // api
-    ApiRequestHeaders, DatacenterApiRequestGetOptions,
-    
-    ApiRoutesNames,
-
-    // apiClient
-    AuthenticationsApiClient,
-    AuthorizationsApiClient,
-    LegalPersonsApiClient,
-    UsersApiClient,
-    Users_GroupsApiClient,
-    UsersGroupsApiClient,
-    UsersGroups_invitesApiClient,
-    IUsers_SharedData_ApiClientGetOptions, UsersSharedDataApiClient,
-    WorkgroupsApiClient,
-    WorkgroupUnitsApiClient,
-    WorkgroupUnitsTypesApiClient,
-
-    // authApp
-    AuthAppRoutesNames,
-
-    // models
-    AuthenticationTokenDataProviders, AuthenticationType, IAuthentication,
-    IAuthenticationRequestBody, IAuthenticationRequestBodyDefault, IAuthenticationRequestBodyFromGoogleToken, IAuthenticationRequestBodyFromUuid,
-    IAuthenticationTokenData, IAuthenticationTokenDataDefault, IAuthenticationTokenDataGoogle, IAuthorization, ILegalPerson, 
-    IUser, IUserGroup, IUserGroup_Authorization, IUserGroup_Invite, IUserSharedData, IUser_Group, IWorkgroup, IWorkgroupUnit, 
-    IWorkgroupUnitType, LegalPersonTypes, User, UserGroup_InviteStatus,  UserGroup_InviteStatusUtils, 
-
-    AuthorizationKeys, AuthorizationKeys as Authorizations,
+  ApiRequestHeaders, ApiRoutesNames,
+  AuthAppRoutesNames,
+  AuthenticationTokenDataProviders, AuthenticationType,
+  AuthenticationsApiClient, AuthorizationKeys, AuthorizationKeys as Authorizations, AuthorizationsApiClient, DatacenterApiRequestGetOptions, IAuthentication, IAuthenticationRequestBody, IAuthenticationRequestBodyDefault, IAuthenticationRequestBodyFromGoogleToken, IAuthenticationRequestBodyFromUuid,
+  IAuthenticationTokenData, IAuthenticationTokenDataDefault, IAuthenticationTokenDataGoogle, IAuthenticationTokenDataIntegration, IAuthorization, IIntegrationClient, ILegalPerson,
+  IUser, IUserGroup, IUserGroup_Authorization, IUserGroup_Invite, IUserSharedData, IUser_Group, IUsers_SharedData_ApiClientGetOptions, IWorkgroup, IWorkgroupUnit,
+  IWorkgroupUnitType, LegalPersonTypes, LegalPersonsApiClient,
+  LicenseKeys, User, UserGroup_InviteStatus, UserGroup_InviteStatusUtils, UsersApiClient, UsersGroupsApiClient,
+  UsersGroups_invitesApiClient, UsersSharedDataApiClient, Users_GroupsApiClient, WorkgroupUnitsApiClient,
+  WorkgroupUnitsTypesApiClient, WorkgroupsApiClient
 }
+

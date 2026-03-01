@@ -1,4 +1,5 @@
 import { JwtPayload } from "jsonwebtoken"
+import { CheckLicenseResponseItemStatus } from 'licensemanager-lib-common-ts'
 
 // authentication...
 
@@ -7,6 +8,7 @@ export const AuthenticationType = {
   default: 0,
   uuid: 1,
   google: 2,
+  integration: 3,
 } as const
 export type AuthenticationType = typeof AuthenticationType[keyof typeof AuthenticationType]
 
@@ -15,30 +17,37 @@ export interface IAuthenticationRequestBody {
 }
 
 export interface IAuthenticationRequestBodyDefault extends IAuthenticationRequestBody {
+  type: typeof AuthenticationType.default,
   login: string,
   pwd: string,
 }
 
 export interface IAuthenticationRequestBodyFromUuid extends IAuthenticationRequestBody {
+  type: typeof AuthenticationType.uuid,
   uuid: string,
 }
 
 export interface IAuthenticationRequestBodyFromGoogleToken extends IAuthenticationRequestBody {
+  type: typeof AuthenticationType.google,
   idToken: string,
   accessToken: string,
 }
 
-// AUTHENTICATION RESPONSE
+export interface IAuthenticationRequestBodyIntegration extends IAuthenticationRequestBody {
+  type: typeof AuthenticationType.integration,
+  clientUuid: string,
+  secret: string,
+}
+
 export interface IAuthentication {
   uuid: string,
-  userUuid: string,
-  // user?: IUser,
   token: string,
 }
 
 // USED IN TOKEN ON FIELD ISS OF JWT TOKEN
 export const AuthenticationTokenDataProviders = {
   default: 'default',
+  integration: 'integration',
   google: 'accounts.google.com',
 } as const
 export type AuthenticationTokenDataProviders = typeof AuthenticationTokenDataProviders[keyof typeof AuthenticationTokenDataProviders]
@@ -52,6 +61,12 @@ export interface IAuthenticationTokenDataDefault extends IAuthenticationTokenDat
   user: IUserSharedData,
 }
 
+export interface IAuthenticationTokenDataIntegration extends IAuthenticationTokenData {
+  authUuid: string,
+  clientUuid: string,
+}
+
+// datacenter nao gera esse toke, é gerado pelo google
 export interface IAuthenticationTokenDataGoogle extends IAuthenticationTokenData {
   azp: string,
   email: string,
@@ -73,6 +88,11 @@ export interface IWorkgroup {
   // allowCreateUsersFreely?: boolean,
 
   legalPersons?: ILegalPerson[]
+  integrationClients?: IIntegrationClient[]
+
+  licenseData?: {
+    status: CheckLicenseResponseItemStatus,
+  }
 }
 
 // export const legalPersonPropsNames = {
@@ -114,7 +134,7 @@ export interface IUser {
   email: string,
   pwd: string,
   imageUrl?: string,
-  
+
   validated?: boolean,
 
   legalPersonUuid?: string,
@@ -292,3 +312,14 @@ export interface IUserGroup_Authorization {
 }
 
 // ...AUTHORIZATION
+
+export interface IIntegrationClient {
+  uuid: string,
+
+  workgroupUuid: string,
+  workgroup?: IWorkgroup,
+
+  name: string,
+  secret: string,
+  active?: boolean,
+}
