@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.1.4...v1.2.0) (2026-03-03)
+
+
+### Features
+
+* IntegrationClientsApiClient ([219a210](https://github.com/joabssilveira/datacenter-lib-common-ts/commit/219a2106d1548f875eaf30d4cf58fe556d34f711))
+
 ### [1.1.4](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.1.3...v1.1.4) (2026-03-03)
 
 ### [1.1.3](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.1.2...v1.1.3) (2026-03-01)
