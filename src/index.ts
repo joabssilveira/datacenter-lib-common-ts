@@ -3,6 +3,7 @@ import { ApiRoutesNames, } from './api/routes'
 
 import { AuthenticationsApiClient } from './apiClient/authentications'
 import { AuthorizationsApiClient } from './apiClient/authorizations'
+import { IntegrationClientsApiClient } from './apiClient/integrationClients'
 import { LegalPersonsApiClient } from './apiClient/legalPersons'
 import { UsersApiClient } from './apiClient/users'
 import { Users_GroupsApiClient } from './apiClient/users_groups'
@@ -37,7 +38,7 @@ export {
   AuthenticationsApiClient, AuthorizationKeys, AuthorizationKeys as Authorizations, AuthorizationsApiClient, DatacenterApiRequestGetOptions, IAuthentication, IAuthenticationRequestBody, IAuthenticationRequestBodyDefault, IAuthenticationRequestBodyFromGoogleToken, IAuthenticationRequestBodyFromUuid,
   IAuthenticationTokenData, IAuthenticationTokenDataDefault, IAuthenticationTokenDataGoogle, IAuthenticationTokenDataIntegration, IAuthorization, IIntegrationClient, ILegalPerson,
   IUser, IUserGroup, IUserGroup_Authorization, IUserGroup_Invite, IUserSharedData, IUser_Group, IUsers_SharedData_ApiClientGetOptions, IWorkgroup, IWorkgroupUnit,
-  IWorkgroupUnitType, LegalPersonTypes, LegalPersonsApiClient,
+  IWorkgroupUnitType, IntegrationClientsApiClient, LegalPersonTypes, LegalPersonsApiClient,
   LicenseKeys, User, UserGroup_InviteStatus, UserGroup_InviteStatusUtils, UsersApiClient, UsersGroupsApiClient,
   UsersGroups_invitesApiClient, UsersSharedDataApiClient, Users_GroupsApiClient, WorkgroupUnitsApiClient,
   WorkgroupUnitsTypesApiClient, WorkgroupsApiClient
