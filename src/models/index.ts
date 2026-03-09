@@ -35,7 +35,7 @@ export interface IAuthenticationRequestBodyFromGoogleToken extends IAuthenticati
 
 export interface IAuthenticationRequestBodyIntegration extends IAuthenticationRequestBody {
   type: typeof AuthenticationType.integration,
-  client_uuid: string,
+  client_id: string,
   secret: string,
 }
 
