@@ -1,7 +1,7 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosStatic } from 'axios'
-import { ApiResponsePostData, Where, ApiClientUtils, BaseApiClient, IApiClientResult } from 'fwork-jsts-common'
-import { IUserGroup_Invite } from '../models'
+import type { AxiosInstance, AxiosRequestConfig, AxiosStatic } from 'axios'
+import { ApiClientUtils, BaseApiClient, type ApiResponsePostData, type IApiClientResult, type Where } from 'fwork-jsts-common'
 import { ApiRoutesNames } from '../api/routes'
+import { type IUserGroup_Invite } from '../models'
 
 export class UsersGroups_invitesApiClient extends BaseApiClient<IUserGroup_Invite, any,
   Where<IUserGroup_Invite>, IUserGroup_Invite, IUserGroup_Invite> {

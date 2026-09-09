@@ -1,7 +1,7 @@
-import axios, { AxiosInstance, AxiosStatic } from 'axios'
-import { ApiClientUtils, BaseApiClient, IApiClientResult, Where } from 'fwork-jsts-common'
+import axios, { type AxiosInstance, type AxiosStatic } from 'axios'
+import { ApiClientUtils, BaseApiClient, type IApiClientResult, type Where } from 'fwork-jsts-common'
 import { ApiRoutesNames } from '../api/routes'
-import { IUser } from '../models'
+import { type IUser } from '../models'
 
 export class UsersApiClient extends BaseApiClient<IUser, any,
   Where<IUser>, IUser, IUser> {

@@ -1,7 +1,7 @@
-import axios, { AxiosInstance, AxiosStatic } from 'axios'
-import { ApiResponseGetListData, Where, ApiClientGetOptions, ApiClientUtils, IApiClientResult } from 'fwork-jsts-common'
-import { IUserSharedData } from '../models'
+import axios, { type AxiosInstance, type AxiosStatic } from 'axios'
+import { type ApiClientGetOptions, ApiClientUtils, type ApiResponseGetListData, type IApiClientResult, type Where } from 'fwork-jsts-common'
 import { ApiRoutesNames } from '../api/routes'
+import { type IUserSharedData } from '../models'
 
 export interface IUsers_SharedData_ApiClientGetOptions
   extends ApiClientGetOptions<IUserSharedData, Where<IUserSharedData>> {

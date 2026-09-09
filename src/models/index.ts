@@ -1,91 +1,17 @@
-import { JwtPayload } from "jsonwebtoken"
-// import { CheckLicenseResponseItemStatus } from 'licensemanager-lib-common-ts'
+// import type { CheckLicenseResponseItemStatus } from 'licensemanager-lib-common-ts'
+import type { IAuthentication } from "./authentication"
+import type { IIdentityDocument, ILegalPerson } from './legalPerson'
 
-// authentication...
-
-// TODO-rename to AuthenticationTypes
-export const AuthenticationType = {
-  default: 0,
-  uuid: 1,
-  google: 2,
-  integration: 3,
-} as const
-export type AuthenticationType = typeof AuthenticationType[keyof typeof AuthenticationType]
-
-export interface IAuthenticationRequestBody {
-  type: AuthenticationType
-}
-
-export interface IAuthenticationRequestBodyDefault extends IAuthenticationRequestBody {
-  type: typeof AuthenticationType.default,
-  login: string,
-  pwd: string,
-}
-
-export interface IAuthenticationRequestBodyFromUuid extends IAuthenticationRequestBody {
-  type: typeof AuthenticationType.uuid,
-  uuid: string,
-}
-
-export interface IAuthenticationRequestBodyFromGoogleToken extends IAuthenticationRequestBody {
-  type: typeof AuthenticationType.google,
-  idToken: string,
-  accessToken: string,
-}
-
-export interface IAuthenticationRequestBodyIntegration extends IAuthenticationRequestBody {
-  type: typeof AuthenticationType.integration,
-  client_id: string,
-  secret: string,
-}
-
-export interface IAuthentication {
-  uuid: string,
-  token: string,
-}
-
-// USED IN TOKEN ON FIELD ISS OF JWT TOKEN
-export const AuthenticationTokenDataProviders = {
-  default: 'default',
-  integration: 'integration',
-  google: 'accounts.google.com',
-} as const
-export type AuthenticationTokenDataProviders = typeof AuthenticationTokenDataProviders[keyof typeof AuthenticationTokenDataProviders]
-
-export interface IAuthenticationTokenData extends JwtPayload {
-
-}
-
-export interface IAuthenticationTokenDataDefault extends IAuthenticationTokenData {
-  authUuid: string,
-  user: IUserSharedData,
-}
-
-export interface IAuthenticationTokenDataIntegration extends IAuthenticationTokenData {
-  authUuid: string,
-  clientUuid: string,
-}
-
-// datacenter nao gera esse toke, é gerado pelo google
-export interface IAuthenticationTokenDataGoogle extends IAuthenticationTokenData {
-  azp: string,
-  email: string,
-  email_verified: string,
-  at_hash: string,
-}
-
-// ...authentication
-
-export interface IWorkgroupUnitType {
-  uuid: string,
-  name: string,
-  workgroupUnits?: IWorkgroupUnit[]
+export interface IModel {
+  created_at: Date,
+  updated_at: Date,
+  deleted_at?: Date,
+  note?: string,
 }
 
 export interface IWorkgroup {
   uuid: string,
   name: string,
-  // allowCreateUsersFreely?: boolean,
 
   legalPersons?: ILegalPerson[]
   integrationClients?: IIntegrationClient[]
@@ -93,36 +19,18 @@ export interface IWorkgroup {
   // licenseData?: {
   //   status: CheckLicenseResponseItemStatus,
   // }
-}
 
-// export const legalPersonPropsNames = {
-//   workgroupUuid: 'workgroupUuid'
-// }
-
-export const LegalPersonTypes = {
-  person: 0,
-  company: 1,
-} as const
-export type LegalPersonTypes = typeof LegalPersonTypes[keyof typeof LegalPersonTypes]
-
-export interface ILegalPerson {
-  uuid: string,
-  type: LegalPersonTypes,
-  name: string,
-
-  workgroupUuid: string,
-  workgroup?: IWorkgroup,
-
-  workgroupUnit?: IWorkgroupUnit,
-
-  users?: IUser[]
+  identityDocuments?: IIdentityDocument[],
+  usersGroups?: IUserGroup[],
+  workgroupUnits?: IWorkgroupUnit[],
 }
 
 export interface IWorkgroupUnit {
-  workgroupUnitTypeUuid: string,
-  workgroupUnitType?: IWorkgroupUnitType,
   legalPersonUuid: string,
   legalPerson?: ILegalPerson,
+
+  workgroupUuid: string,
+  workgroup?: IWorkgroup,
 
   usersGroups?: IUserGroup[]
 }
@@ -241,8 +149,11 @@ export interface IUserGroup {
   uuid: string,
   name: string,
 
-  workgroupUnitUuid: string,
+  workgroupUnitUuid?: string,
   workgroupUnit?: IWorkgroupUnit,
+
+  workgroupUuid: string,
+  workgroup?: IWorkgroup,
 
   users?: IUser_Group[]
   authorizations?: IUserGroup_Authorization[],

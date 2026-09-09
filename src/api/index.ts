@@ -1,6 +1,6 @@
-import { ApiRequestGetOptions } from "fwork-jsts-common"
-import { Where } from "fwork-jsts-common"
-import { IUser } from "../models"
+import type { ApiRequestGetOptions } from "fwork-jsts-common"
+import type { Where } from "fwork-jsts-common"
+import type { IUser } from "../models"
 
 export const ApiRequestHeaders = {
   tokenProvider: 'token-provider'

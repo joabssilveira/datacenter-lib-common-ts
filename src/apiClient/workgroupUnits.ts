@@ -1,8 +1,7 @@
-import { AxiosInstance, AxiosStatic } from 'axios'
-import { BaseApiClient } from 'fwork-jsts-common'
-import { Where } from 'fwork-jsts-common'
-import { IWorkgroupUnit } from '../models'
+import type { AxiosInstance, AxiosStatic } from 'axios'
+import { BaseApiClient, type Where } from 'fwork-jsts-common'
 import { ApiRoutesNames } from '../api/routes'
+import { type IWorkgroupUnit } from '../models'
 
 export class WorkgroupUnitsApiClient extends BaseApiClient<IWorkgroupUnit, any,
   Where<IWorkgroupUnit>, IWorkgroupUnit, IWorkgroupUnit> {

@@ -1,11 +1,11 @@
-import { AxiosInstance, AxiosStatic } from 'axios'
+import type { AxiosInstance, AxiosStatic } from 'axios'
+import type { Where } from 'fwork-jsts-common'
 import { BaseApiClient } from 'fwork-jsts-common'
-import { Where } from 'fwork-jsts-common'
-import { IIntegrationClient } from '../models'
 import { ApiRoutesNames } from '../api/routes'
+import type { IIntegrationClient } from '../models'
 
-export class IntegrationClientsApiClient extends BaseApiClient<IIntegrationClient, any, 
-  Where<IIntegrationClient>,  
+export class IntegrationClientsApiClient extends BaseApiClient<IIntegrationClient, any,
+  Where<IIntegrationClient>,
   IIntegrationClient, IIntegrationClient> {
   constructor(args: {
     baseApiUrl: string

@@ -1,10 +1,11 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosStatic } from 'axios'
-import { ApiClientUtils, IApiClientResult } from 'fwork-jsts-common'
+import axios from 'axios'
+import type { AxiosInstance, AxiosRequestConfig, AxiosStatic } from 'axios'
+import { ApiClientUtils, type IApiClientResult } from 'fwork-jsts-common'
 import { ApiRoutesNames } from '../api/routes'
-import {
+import type {
   IAuthentication, IAuthenticationRequestBodyDefault,
   IAuthenticationRequestBodyFromGoogleToken, IAuthenticationRequestBodyFromUuid
-} from '../models'
+} from '../models/authentication'
 
 export class AuthenticationsApiClient {
   apiUrl: string
