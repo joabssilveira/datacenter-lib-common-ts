@@ -72,6 +72,7 @@ import {
   DatacenterCrudAuthTypes,
   type DatacenterCrudAuthUser,
   getUserUuidFromCrudAuth,
+  DatacenterCrudAuthTokenDataLocal,
 } from './types'
 
 // utils
@@ -80,6 +81,7 @@ import { formatPhone, } from './utils/utils'
 import { WorkgroupUnitUtils, } from './utils/workgroupUnit'
 
 export {
+  DatacenterCrudAuthTokenDataLocal,
   type AuthenticationTokenDataLocal, WorkgroupUnitUtils,
   getUserUuidFromCrudAuth, type DatacenterCrudAuthTokenDataExt,
   ApiRequestHeaders, ApiRoutesNames,
