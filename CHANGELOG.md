@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.2.5...v1.3.0) (2026-09-10)
+
+
+### Features
+
+* datacenterCrudAuthTokenDataLocal ([638ff6f](https://github.com/joabssilveira/datacenter-lib-common-ts/commit/638ff6f37b5dbbe0ae91b60d858aca189ae57994))
+
 ### [1.2.5](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.2.4...v1.2.5) (2026-09-09)
 
 ### [1.2.4](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.2.3...v1.2.4) (2026-08-13)
