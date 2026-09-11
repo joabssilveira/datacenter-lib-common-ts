@@ -1,11 +1,11 @@
-import { StrictOmit } from "fwork-jsts-common"
 import { IUserSharedData } from "../models"
-import { AuthenticationTokenDataLocal, IAuthenticationTokenData, IAuthenticationTokenDataDefault } from "../models/authentication"
+import { AuthenticationTokenDataProviders, IAuthenticationTokenData, IAuthenticationTokenDataDefault, IAuthenticationTokenDataIntegration } from "../models/authentication"
 
 export enum DatacenterCrudAuthTypes {
   skip,
   user,
-  tokenData,
+  tokenDataDefault,
+  tokenDataIntegration,
 }
 
 /**
@@ -27,25 +27,31 @@ export interface DatacenterCrudAuthUser extends DatacenterCrudAuth {
   user: IUserSharedData
 }
 
-export interface DatacenterCrudAuthTokenData extends DatacenterCrudAuth {
-  type: DatacenterCrudAuthTypes.tokenData
-  /**
-   * default, integration or google
-   */
-  tokenData: IAuthenticationTokenData,
-}
+// export interface DatacenterCrudAuthTokenData extends DatacenterCrudAuth {
+//   type: DatacenterCrudAuthTypes.tokenData
+//   /**
+//    * default, integration or google
+//    */
+//   tokenData: IAuthenticationTokenData,
+// }
 
-export interface DatacenterCrudAuthTokenDataDefault extends StrictOmit<DatacenterCrudAuthTokenData, 'tokenData'> {
-  type: DatacenterCrudAuthTypes.tokenData
+export interface DatacenterCrudAuthTokenDataDefault extends DatacenterCrudAuth {
+  type: DatacenterCrudAuthTypes.tokenDataDefault
   tokenData: IAuthenticationTokenDataDefault,
 }
 
-export interface DatacenterCrudAuthTokenDataExt<T extends IAuthenticationTokenData> extends DatacenterCrudAuth {
-  type: DatacenterCrudAuthTypes.tokenData
-  tokenData: T,
+export interface DatacenterCrudAuthTokenDataIntegration extends DatacenterCrudAuth {
+  type: DatacenterCrudAuthTypes.tokenDataIntegration,
+  tokenData: IAuthenticationTokenDataIntegration,
 }
 
-export type DatacenterCrudAuthTokenDataLocal = DatacenterCrudAuthTokenDataExt<AuthenticationTokenDataLocal>
+// export interface DatacenterCrudAuthTokenDataExt<T extends IAuthenticationTokenData> extends DatacenterCrudAuth {
+//   type: DatacenterCrudAuthTypes.tokenData
+//   tokenData: T,
+// }
+
+// export type DatacenterCrudAuthTokenDataLocal = DatacenterCrudAuthTokenDataExt<AuthenticationTokenDataLocal>
+// export type DatacenterCrudAuthTokenDataLocal = DatacenterCrudAuthTokenDataExt<AuthenticationTokenDataLocal>
 
 export function getUserUuidFromCrudAuth(options: {
   crudAuth: DatacenterCrudAuthUser | DatacenterCrudAuthTokenDataDefault
@@ -53,8 +59,27 @@ export function getUserUuidFromCrudAuth(options: {
   if (options.crudAuth.type == DatacenterCrudAuthTypes.user)
     return (options.crudAuth as DatacenterCrudAuthUser).user.uuid
 
-  if (options.crudAuth.type == DatacenterCrudAuthTypes.tokenData)
+  if (options.crudAuth.type == DatacenterCrudAuthTypes.tokenDataDefault)
     return (options.crudAuth as DatacenterCrudAuthTokenDataDefault).tokenData.user.uuid
 
   return ''
+}
+
+export function getCrudAuthFromTokenData(options: {
+  tokenData: IAuthenticationTokenData
+}): DatacenterCrudAuthTokenDataDefault | DatacenterCrudAuthTokenDataIntegration {
+  const { tokenData } = options
+  const result = tokenData.iss == AuthenticationTokenDataProviders.default ? {
+    type: DatacenterCrudAuthTypes.tokenDataDefault,
+    tokenData,
+  } as DatacenterCrudAuthTokenDataDefault
+    : tokenData.iss == AuthenticationTokenDataProviders.integration ? {
+      type: DatacenterCrudAuthTypes.tokenDataIntegration,
+      tokenData,
+    } as DatacenterCrudAuthTokenDataIntegration : undefined
+
+  if (!result)
+    throw Error('Invalid token data. Token data must be default or integration')
+
+  return result
 }

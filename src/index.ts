@@ -66,13 +66,14 @@ import type { ICity, ICityBrazilCustomData, ICountry, IState, IStateBrazilCustom
 import {
   type DatacenterCrudAuth,
   type DatacenterCrudAuthSkip,
-  type DatacenterCrudAuthTokenData,
+  // type DatacenterCrudAuthTokenData,
   type DatacenterCrudAuthTokenDataDefault,
-  type DatacenterCrudAuthTokenDataExt,
+  // type DatacenterCrudAuthTokenDataExt,
   DatacenterCrudAuthTypes,
   type DatacenterCrudAuthUser,
   getUserUuidFromCrudAuth,
-  DatacenterCrudAuthTokenDataLocal,
+  getCrudAuthFromTokenData,
+  // DatacenterCrudAuthTokenDataLocal,
 } from './types'
 
 // utils
@@ -81,13 +82,16 @@ import { formatPhone, } from './utils/utils'
 import { WorkgroupUnitUtils, } from './utils/workgroupUnit'
 
 export {
-  DatacenterCrudAuthTokenDataLocal,
+  // DatacenterCrudAuthTokenDataLocal,
   type AuthenticationTokenDataLocal, WorkgroupUnitUtils,
-  getUserUuidFromCrudAuth, type DatacenterCrudAuthTokenDataExt,
+  getUserUuidFromCrudAuth, getCrudAuthFromTokenData,
+  // type DatacenterCrudAuthTokenDataExt,
   ApiRequestHeaders, ApiRoutesNames,
   AuthAppRoutesNames, AuthenticationTokenDataProviders, AuthenticationType,
   AuthenticationsApiClient, AuthorizationKeys, AuthorizationKeys as Authorizations, AuthorizationsApiClient, BloodType, DatacenterCrudAuth, 
-  DatacenterCrudAuthSkip, DatacenterCrudAuthTokenData, type DatacenterCrudAuthTokenDataDefault, DatacenterCrudAuthTypes,
+  DatacenterCrudAuthSkip, 
+  // DatacenterCrudAuthTokenData, 
+  type DatacenterCrudAuthTokenDataDefault, DatacenterCrudAuthTypes,
   DatacenterCrudAuthUser, Gender, Handedness, HealthConditionType, IdentityDocumentsApiClient, IntegrationClientsApiClient, LegalPersonTypeOptions, 
   LegalPersonTypes, LegalPersonUtils, LegalPersonsApiClient,
   LicenseKeys, MaritalStatus, User, UserGroup_InviteStatus, UserGroup_InviteStatusUtils, UsersApiClient, UsersGroupsApiClient,
