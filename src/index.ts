@@ -1,5 +1,5 @@
 // api
-import { ApiRequestHeaders, type DatacenterApiRequestGetOptions, } from './api'
+import { ApiRequestHeaders, DatacenterApiRequestGetOptions, } from './api'
 import { ApiRoutesNames, } from './api/routes'
 
 // apiClient
@@ -12,7 +12,7 @@ import { UsersApiClient, } from './apiClient/users'
 import { Users_GroupsApiClient, } from './apiClient/users_groups'
 import { UsersGroupsApiClient, } from './apiClient/usersGroups'
 import { UsersGroups_invitesApiClient, } from './apiClient/usersGroups_invites'
-import { type IUsers_SharedData_ApiClientGetOptions, UsersSharedDataApiClient, } from './apiClient/usersSharedData'
+import { IUsers_SharedData_ApiClientGetOptions, UsersSharedDataApiClient, } from './apiClient/usersSharedData'
 import { WorkgroupsApiClient, } from './apiClient/workgroups'
 import { WorkgroupUnitsApiClient, } from './apiClient/workgroupUnits'
 
@@ -27,12 +27,12 @@ import { LicenseKeys, } from './license'
 // models/authentications
 import {
   AuthenticationTokenDataProviders, AuthenticationType,
-  type IAuthentication,
-  type IAuthenticationRequestBody, type IAuthenticationRequestBodyDefault, type IAuthenticationRequestBodyFromGoogleToken, type IAuthenticationRequestBodyFromUuid,
-  type IAuthenticationRequestBodyIntegration,
-  type IAuthenticationTokenData, type IAuthenticationTokenDataDefault, type IAuthenticationTokenDataGoogle,
-  type IAuthenticationTokenDataIntegration,
-  type AuthenticationTokenDataLocal,
+  IAuthentication,
+  IAuthenticationRequestBody, IAuthenticationRequestBodyDefault, IAuthenticationRequestBodyFromGoogleToken, IAuthenticationRequestBodyFromUuid,
+  IAuthenticationRequestBodyIntegration,
+  IAuthenticationTokenData, IAuthenticationTokenDataDefault, IAuthenticationTokenDataGoogle,
+  IAuthenticationTokenDataIntegration,
+  AuthenticationTokenDataLocal,
 } from './models/authentication'
 
 // models/authorizations
@@ -40,37 +40,37 @@ import { AuthorizationKeys, } from './models/authorizations'
 
 // models/index
 import {
-  type IAuthorization,
-  type IIntegrationClient,
-  type IUser, type IUserGroup, type IUserGroup_Authorization, type IUserGroup_Invite, type IUserSharedData, type IUser_Group, type IWorkgroup, type IWorkgroupUnit,
+  IAuthorization,
+  IIntegrationClient,
+  IUser, IUserGroup, IUserGroup_Authorization, IUserGroup_Invite, IUserSharedData, IUser_Group, IWorkgroup, IWorkgroupUnit,
   User, UserGroup_InviteStatus, UserGroup_InviteStatusUtils,
 } from './models'
 
 // models/legalPerson
 import {
   BloodType, Gender, Handedness, HealthConditionType,
-  type ICompany, type IEthnicity, type IHealthConditionCatalog,
-  type IIdentityDocument, type IIdentityDocumentIssuer,
-  type ILegalPerson,
-  type ILegalPersonAddress, type ILegalPersonIdentityDocument,
-  type IMedication, type IPerson, type IPersonHealth, type IPersonHealthCondition, type IPersonMedication,
+  ICompany, IEthnicity, IHealthConditionCatalog,
+  IIdentityDocument, IIdentityDocumentIssuer,
+  ILegalPerson,
+  ILegalPersonAddress, ILegalPersonIdentityDocument,
+  IMedication, IPerson, IPersonHealth, IPersonHealthCondition, IPersonMedication,
   LegalPersonTypeOptions,
   LegalPersonTypes,
   MaritalStatus,
 } from './models/legalPerson'
 
 // models/region
-import type { ICity, ICityBrazilCustomData, ICountry, IState, IStateBrazilCustomData, } from './models/region'
+import { ICity, ICityBrazilCustomData, ICountry, IState, IStateBrazilCustomData, } from './models/region'
 
 // types
 import {
-  type DatacenterCrudAuth,
-  type DatacenterCrudAuthSkip,
-  // type DatacenterCrudAuthTokenData,
-  type DatacenterCrudAuthTokenDataDefault,
-  // type DatacenterCrudAuthTokenDataExt,
+  DatacenterCrudAuth,
+  DatacenterCrudAuthSkip,
+  // DatacenterCrudAuthTokenData,
+  DatacenterCrudAuthTokenDataDefault,
+  // DatacenterCrudAuthTokenDataExt,
   DatacenterCrudAuthTypes,
-  type DatacenterCrudAuthUser,
+  DatacenterCrudAuthUser,
   getUserUuidFromCrudAuth,
   getCrudAuthFromTokenData,
   // DatacenterCrudAuthTokenDataLocal,
@@ -83,31 +83,31 @@ import { WorkgroupUnitUtils, } from './utils/workgroupUnit'
 
 export {
   // DatacenterCrudAuthTokenDataLocal,
-  type AuthenticationTokenDataLocal, WorkgroupUnitUtils,
+  AuthenticationTokenDataLocal, WorkgroupUnitUtils,
   getUserUuidFromCrudAuth, getCrudAuthFromTokenData,
-  // type DatacenterCrudAuthTokenDataExt,
+  // DatacenterCrudAuthTokenDataExt,
   ApiRequestHeaders, ApiRoutesNames,
   AuthAppRoutesNames, AuthenticationTokenDataProviders, AuthenticationType,
   AuthenticationsApiClient, AuthorizationKeys, AuthorizationKeys as Authorizations, AuthorizationsApiClient, BloodType, DatacenterCrudAuth, 
   DatacenterCrudAuthSkip, 
   // DatacenterCrudAuthTokenData, 
-  type DatacenterCrudAuthTokenDataDefault, DatacenterCrudAuthTypes,
+  DatacenterCrudAuthTokenDataDefault, DatacenterCrudAuthTypes,
   DatacenterCrudAuthUser, Gender, Handedness, HealthConditionType, IdentityDocumentsApiClient, IntegrationClientsApiClient, LegalPersonTypeOptions, 
   LegalPersonTypes, LegalPersonUtils, LegalPersonsApiClient,
   LicenseKeys, MaritalStatus, User, UserGroup_InviteStatus, UserGroup_InviteStatusUtils, UsersApiClient, UsersGroupsApiClient,
   UsersGroups_invitesApiClient, UsersSharedDataApiClient, Users_GroupsApiClient, WorkgroupUnitsApiClient,
-  WorkgroupsApiClient, formatPhone, type DatacenterApiRequestGetOptions, type IAuthentication, type IAuthenticationRequestBody, 
-  type IAuthenticationRequestBodyDefault,
-  type IAuthenticationRequestBodyFromGoogleToken,
-  type IAuthenticationRequestBodyFromUuid, type IAuthenticationRequestBodyIntegration, type IAuthenticationTokenData, type IAuthenticationTokenDataDefault,
-  type IAuthenticationTokenDataGoogle, type IAuthenticationTokenDataIntegration, type IAuthorization, type ICity,
-  type ICityBrazilCustomData,
-  type ICompany, type ICountry, type IEthnicity, type IHealthConditionCatalog,
-  type IIdentityDocument, type IIdentityDocumentIssuer, type IIntegrationClient, type ILegalPerson, type ILegalPersonAddress, type ILegalPersonIdentityDocument,
-  type IMedication, type IPerson, type IPersonHealth, type IPersonHealthCondition, type IPersonMedication,
-  type IState, type IStateBrazilCustomData, type IUser, type IUserGroup, type IUserGroup_Authorization, type IUserGroup_Invite, type IUserSharedData,
-  type IUser_Group,
-  type IUsers_SharedData_ApiClientGetOptions,
-  type IWorkgroup, type IWorkgroupUnit
+  WorkgroupsApiClient, formatPhone, DatacenterApiRequestGetOptions, IAuthentication, IAuthenticationRequestBody, 
+  IAuthenticationRequestBodyDefault,
+  IAuthenticationRequestBodyFromGoogleToken,
+  IAuthenticationRequestBodyFromUuid, IAuthenticationRequestBodyIntegration, IAuthenticationTokenData, IAuthenticationTokenDataDefault,
+  IAuthenticationTokenDataGoogle, IAuthenticationTokenDataIntegration, IAuthorization, ICity,
+  ICityBrazilCustomData,
+  ICompany, ICountry, IEthnicity, IHealthConditionCatalog,
+  IIdentityDocument, IIdentityDocumentIssuer, IIntegrationClient, ILegalPerson, ILegalPersonAddress, ILegalPersonIdentityDocument,
+  IMedication, IPerson, IPersonHealth, IPersonHealthCondition, IPersonMedication,
+  IState, IStateBrazilCustomData, IUser, IUserGroup, IUserGroup_Authorization, IUserGroup_Invite, IUserSharedData,
+  IUser_Group,
+  IUsers_SharedData_ApiClientGetOptions,
+  IWorkgroup, IWorkgroupUnit
 }
 
