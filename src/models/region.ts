@@ -11,7 +11,7 @@ export interface ICountry extends IModel {
   states?: IState[],
 }
 
-export interface IState extends IStateBrazilCustomData {
+export interface IState extends IStateBrazilCustomData, IModel {
   uuid: string,
 
   name: string,
@@ -27,7 +27,7 @@ export interface IStateBrazilCustomData {
   BrRegionName?: string,
 }
 
-export interface ICity extends ICityBrazilCustomData {
+export interface ICity extends ICityBrazilCustomData, IModel {
   uuid: string,
 
   name: string,

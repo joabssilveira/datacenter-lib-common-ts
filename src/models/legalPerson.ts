@@ -22,7 +22,7 @@ export const LegalPersonTypeOptions: Record<keyof typeof LegalPersonTypes, {
   },
 }
 
-export interface ILegalPerson {
+export interface ILegalPerson extends IModel {
   uuid: string,
   type: LegalPersonTypes,
   name: string,

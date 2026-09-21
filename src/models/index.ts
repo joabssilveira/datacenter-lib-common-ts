@@ -9,7 +9,7 @@ export interface IModel {
   note?: string,
 }
 
-export interface IWorkgroup {
+export interface IWorkgroup extends IModel {
   uuid: string,
   name: string,
 
@@ -25,7 +25,7 @@ export interface IWorkgroup {
   workgroupUnits?: IWorkgroupUnit[],
 }
 
-export interface IWorkgroupUnit {
+export interface IWorkgroupUnit extends IModel {
   legalPersonUuid: string,
   legalPerson?: ILegalPerson,
 
@@ -35,7 +35,7 @@ export interface IWorkgroupUnit {
   usersGroups?: IUserGroup[]
 }
 
-export interface IUser {
+export interface IUser extends IModel {
   uuid: string,
   name: string,
   login: string,
@@ -65,6 +65,9 @@ export class User implements IUser {
   legalPersonUuid?: string | undefined
   legalPerson?: ILegalPerson | undefined
   groups?: IUser_Group[] | undefined
+  created_at: Date
+  updated_at: Date
+  deleted_at?: Date | undefined
 
   constructor(data: {
     uuid: string,
@@ -77,6 +80,9 @@ export class User implements IUser {
     legalPersonUuid?: string | undefined,
     legalPerson?: ILegalPerson | undefined,
     groups?: IUser_Group[] | undefined,
+    created_at: Date,
+    updated_at: Date,
+    deleted_at?: Date | undefined,
   }) {
     this.uuid = data.uuid
     this.name = data.name
@@ -88,6 +94,9 @@ export class User implements IUser {
     this.legalPersonUuid = data.legalPersonUuid
     this.legalPerson = data.legalPerson
     this.groups = data.groups
+    this.created_at = data.created_at
+    this.updated_at = data.updated_at
+    this.deleted_at = data.deleted_at
   }
 
   toUserSharedData() {
@@ -145,7 +154,7 @@ export interface IUserSharedData {
   imageUrl?: string,
 }
 
-export interface IUserGroup {
+export interface IUserGroup extends IModel {
   uuid: string,
   name: string,
 
@@ -160,7 +169,7 @@ export interface IUserGroup {
   usersInvites?: IUserGroup_Invite[],
 }
 
-export interface IUser_Group {
+export interface IUser_Group extends IModel {
   uuid: string,
 
   userUuid: string,
@@ -174,7 +183,6 @@ export const UserGroup_InviteStatus = {
   accepted: 1,
   refused: 2,
 } as const
-
 export type UserGroup_InviteStatus = typeof UserGroup_InviteStatus[keyof typeof UserGroup_InviteStatus]
 
 export class UserGroup_InviteStatusUtils {
@@ -186,7 +194,7 @@ export class UserGroup_InviteStatusUtils {
   }
 }
 
-export interface IUserGroup_Invite {
+export interface IUserGroup_Invite extends IModel {
   uuid: string,
   userUuid: string,
   user?: IUser,
@@ -203,7 +211,7 @@ export interface IUserGroup_Invite {
 // ESSE MODELO DEVE TER A COLECAO REIMPLEMENTADA NOS APPS QUE CONECTAM NO DCENTER
 // EX. A DEFINICAO DAS AUTORIZACOES REFERENTES AO APP ESCOLAR DEVEM FICAR NA LIB DO ESCOLAR
 // EX. A DEFINICAO DAS AUTORIZACOES REFERENTES AO APP MESSENGER DEVEM FICAR NA LIB DO MESSENGER
-export interface IAuthorization {
+export interface IAuthorization extends IModel {
   key: string,
   description: string,
 
@@ -213,7 +221,7 @@ export interface IAuthorization {
 // ESSE MODELO DEVE TER A COLECAO REIMPLEMENTADA NOS APPS QUE CONECTAM NO DCENTER
 // EX. A RELACAO ENTRE OS GRUPOS DE USUARIOS E AS AUTORIZACOES REFERENTES AO APP ESCOLAR DEVEM FICAR NA LIB DO ESCOLAR
 // EX. A RELACAO ENTRE OS GRUPOS DE USUARIOS E AS AUTORIZACOES REFERENTES AO APP MESSENGER DEVEM FICAR NA LIB DO MESSENGER
-export interface IUserGroup_Authorization {
+export interface IUserGroup_Authorization extends IModel {
   uuid: string,
 
   authorizationKey: string,
@@ -224,7 +232,7 @@ export interface IUserGroup_Authorization {
 
 // ...AUTHORIZATION
 
-export interface IIntegrationClient {
+export interface IIntegrationClient extends IModel {
   uuid: string,
 
   workgroupUuid: string,
@@ -233,4 +241,14 @@ export interface IIntegrationClient {
   name: string,
   secret: string,
   active?: boolean,
+
+  authorizations?: IIntegrationClient_Authorization[]
+}
+
+export interface IIntegrationClient_Authorization extends IModel {
+  uuid: string,
+  authorizationKey: string,
+  authorization?: IAuthorization,
+  integrationClientUuid: string,
+  integrationClient?: IIntegrationClient,
 }

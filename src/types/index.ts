@@ -51,16 +51,18 @@ export interface DatacenterCrudAuthTokenDataIntegration extends DatacenterCrudAu
 // }
 
 // export type DatacenterCrudAuthTokenDataLocal = DatacenterCrudAuthTokenDataExt<AuthenticationTokenDataLocal>
-// export type DatacenterCrudAuthTokenDataLocal = DatacenterCrudAuthTokenDataExt<AuthenticationTokenDataLocal>
 
-export function getUserUuidFromCrudAuth(options: {
-  crudAuth: DatacenterCrudAuthUser | DatacenterCrudAuthTokenDataDefault
+export function getAgentUuidFromCrudAuth(options: {
+  crudAuth: DatacenterCrudAuthUser | DatacenterCrudAuthTokenDataDefault | DatacenterCrudAuthTokenDataIntegration
 }): string {
   if (options.crudAuth.type == DatacenterCrudAuthTypes.user)
     return (options.crudAuth as DatacenterCrudAuthUser).user.uuid
 
   if (options.crudAuth.type == DatacenterCrudAuthTypes.tokenDataDefault)
     return (options.crudAuth as DatacenterCrudAuthTokenDataDefault).tokenData.user.uuid
+
+  if (options.crudAuth.type == DatacenterCrudAuthTypes.tokenDataIntegration)
+    return (options.crudAuth as DatacenterCrudAuthTokenDataIntegration).tokenData.clientUuid
 
   return ''
 }
