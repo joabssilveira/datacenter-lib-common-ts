@@ -1,5 +1,4 @@
 import type { IModel, IUser, IWorkgroup, IWorkgroupUnit } from "."
-import type { ICity } from "./region"
 
 export const LegalPersonTypes = {
   person: "person",
@@ -55,8 +54,7 @@ export interface ILegalPersonAddress {
   legalPersonUuid: string,
   legalPerson?: ILegalPerson,
 
-  cityUuid: string,
-  city?: ICity,
+  // TODO: geographic_region
 
   street: string,
   number: string,

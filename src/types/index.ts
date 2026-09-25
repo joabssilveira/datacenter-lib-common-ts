@@ -1,4 +1,4 @@
-import { IUserSharedData } from "../models"
+import { Agent, AgentType, IUserSharedData } from "../models"
 import { AuthenticationTokenDataProviders, IAuthenticationTokenData, IAuthenticationTokenDataDefault, IAuthenticationTokenDataIntegration } from "../models/authentication"
 
 export enum DatacenterCrudAuthTypes {
@@ -52,19 +52,28 @@ export interface DatacenterCrudAuthTokenDataIntegration extends DatacenterCrudAu
 
 // export type DatacenterCrudAuthTokenDataLocal = DatacenterCrudAuthTokenDataExt<AuthenticationTokenDataLocal>
 
-export function getAgentUuidFromCrudAuth(options: {
+export function getAgentFromCrudAuth(options: {
   crudAuth: DatacenterCrudAuthUser | DatacenterCrudAuthTokenDataDefault | DatacenterCrudAuthTokenDataIntegration
-}): string {
+}): Agent | undefined {
   if (options.crudAuth.type == DatacenterCrudAuthTypes.user)
-    return (options.crudAuth as DatacenterCrudAuthUser).user.uuid
+    return {
+      uuid: (options.crudAuth as DatacenterCrudAuthUser).user.uuid,
+      type: AgentType.user,
+    }
 
   if (options.crudAuth.type == DatacenterCrudAuthTypes.tokenDataDefault)
-    return (options.crudAuth as DatacenterCrudAuthTokenDataDefault).tokenData.user.uuid
+    return {
+      uuid: (options.crudAuth as DatacenterCrudAuthTokenDataDefault).tokenData.user.uuid,
+      type: AgentType.user,
+    }
 
   if (options.crudAuth.type == DatacenterCrudAuthTypes.tokenDataIntegration)
-    return (options.crudAuth as DatacenterCrudAuthTokenDataIntegration).tokenData.clientUuid
+    return {
+      uuid: (options.crudAuth as DatacenterCrudAuthTokenDataIntegration).tokenData.clientUuid,
+      type: AgentType.integrationClient,
+    }
 
-  return ''
+  return undefined
 }
 
 export function getCrudAuthFromTokenData(options: {

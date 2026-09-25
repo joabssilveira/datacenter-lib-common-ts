@@ -1,10 +1,10 @@
 import type { AxiosInstance, AxiosRequestConfig, AxiosStatic } from 'axios'
 import { ApiClientUtils, BaseApiClient, type ApiResponsePostData, type IApiClientResult, type Where } from 'fwork-jsts-common'
 import { ApiRoutesNames } from '../api/routes'
-import { type IUserGroup_Invite } from '../models'
+import { type IUsersGroupInvite } from '../models'
 
-export class UsersGroups_invitesApiClient extends BaseApiClient<IUserGroup_Invite, any,
-  Where<IUserGroup_Invite>, IUserGroup_Invite, IUserGroup_Invite> {
+export class UsersGroups_invitesApiClient extends BaseApiClient<IUsersGroupInvite, any,
+  Where<IUsersGroupInvite>, IUsersGroupInvite, IUsersGroupInvite> {
   constructor(args: {
     baseApiUrl: string
     axios?: AxiosStatic | AxiosInstance,
@@ -16,11 +16,11 @@ export class UsersGroups_invitesApiClient extends BaseApiClient<IUserGroup_Invit
   }
 
   async bulkPost(args: {
-    data: IUserGroup_Invite[],
+    data: IUsersGroupInvite[],
     status?: number[],
-    config?: AxiosRequestConfig<IUserGroup_Invite[]> | undefined
-  }): Promise<IApiClientResult<ApiResponsePostData<IUserGroup_Invite[]>>> {
-    return ApiClientUtils.post<IUserGroup_Invite[], ApiResponsePostData<IUserGroup_Invite[]>>({
+    config?: AxiosRequestConfig<IUsersGroupInvite[]> | undefined
+  }): Promise<IApiClientResult<ApiResponsePostData<IUsersGroupInvite[]>>> {
+    return ApiClientUtils.post<IUsersGroupInvite[], ApiResponsePostData<IUsersGroupInvite[]>>({
       apiUrl: this.apiUrl,
       axios: this.axios,
       ...args,

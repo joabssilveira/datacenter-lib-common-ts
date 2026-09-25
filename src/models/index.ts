@@ -21,7 +21,7 @@ export interface IWorkgroup extends IModel {
   // }
 
   identityDocuments?: IIdentityDocument[],
-  usersGroups?: IUserGroup[],
+  usersGroups?: IUsersGroup[],
   workgroupUnits?: IWorkgroupUnit[],
 }
 
@@ -32,7 +32,7 @@ export interface IWorkgroupUnit extends IModel {
   workgroupUuid: string,
   workgroup?: IWorkgroup,
 
-  usersGroups?: IUserGroup[]
+  usersGroups?: IUsersGroup[]
 }
 
 export interface IUser extends IModel {
@@ -48,9 +48,9 @@ export interface IUser extends IModel {
   legalPersonUuid?: string,
   legalPerson?: ILegalPerson,
 
-  groups?: IUser_Group[],
-  receivedInvites?: IUserGroup_Invite[],
-  sentInvites?: IUserGroup_Invite[],
+  groups?: IUserGroup[],
+  receivedInvites?: IUsersGroupInvite[],
+  sentInvites?: IUsersGroupInvite[],
   authentications?: IAuthentication[],
 }
 
@@ -64,7 +64,7 @@ export class User implements IUser {
   imageUrl?: string | undefined
   legalPersonUuid?: string | undefined
   legalPerson?: ILegalPerson | undefined
-  groups?: IUser_Group[] | undefined
+  groups?: IUserGroup[] | undefined
   created_at: Date
   updated_at: Date
   deleted_at?: Date | undefined
@@ -79,7 +79,7 @@ export class User implements IUser {
     imageUrl?: string | undefined,
     legalPersonUuid?: string | undefined,
     legalPerson?: ILegalPerson | undefined,
-    groups?: IUser_Group[] | undefined,
+    groups?: IUserGroup[] | undefined,
     created_at: Date,
     updated_at: Date,
     deleted_at?: Date | undefined,
@@ -154,7 +154,7 @@ export interface IUserSharedData {
   imageUrl?: string,
 }
 
-export interface IUserGroup extends IModel {
+export interface IUsersGroup extends IModel {
   uuid: string,
   name: string,
 
@@ -164,46 +164,46 @@ export interface IUserGroup extends IModel {
   workgroupUuid: string,
   workgroup?: IWorkgroup,
 
-  users?: IUser_Group[]
-  authorizations?: IUserGroup_Authorization[],
-  usersInvites?: IUserGroup_Invite[],
+  users?: IUserGroup[]
+  authorizations?: IUsersGroupAuthorization[],
+  usersInvites?: IUsersGroupInvite[],
 }
 
-export interface IUser_Group extends IModel {
+export interface IUserGroup extends IModel {
   uuid: string,
 
   userUuid: string,
   user?: IUser,
   userGroupUuid: string,
-  userGroup?: IUserGroup
+  userGroup?: IUsersGroup
 }
 
-export const UserGroup_InviteStatus = {
+export const UsersGroupInviteStatus = {
   pending: 0,
   accepted: 1,
   refused: 2,
 } as const
-export type UserGroup_InviteStatus = typeof UserGroup_InviteStatus[keyof typeof UserGroup_InviteStatus]
+export type UsersGroupInviteStatus = typeof UsersGroupInviteStatus[keyof typeof UsersGroupInviteStatus]
 
-export class UserGroup_InviteStatusUtils {
-  static UserGroup_InviteStatusGetDescription = (status: UserGroup_InviteStatus) => {
-    return status == UserGroup_InviteStatus.pending ? 'Pendente' : status == UserGroup_InviteStatus.accepted ? 'Aceito' : 'Negado'
+export class UsersGroupInviteStatusUtils {
+  static UsersGroupInviteStatusGetDescription = (status: UsersGroupInviteStatus) => {
+    return status == UsersGroupInviteStatus.pending ? 'Pendente' : status == UsersGroupInviteStatus.accepted ? 'Aceito' : 'Negado'
   }
-  static UserGroup_InviteStatusGetUiMaterialChipColor = (status: UserGroup_InviteStatus) => {
-    return status == UserGroup_InviteStatus.pending ? 'warning' : status == UserGroup_InviteStatus.accepted ? 'success' : 'error'
+  static UsersGroupInviteStatusGetUiMaterialChipColor = (status: UsersGroupInviteStatus) => {
+    return status == UsersGroupInviteStatus.pending ? 'warning' : status == UsersGroupInviteStatus.accepted ? 'success' : 'error'
   }
 }
 
-export interface IUserGroup_Invite extends IModel {
+export interface IUsersGroupInvite extends IModel {
   uuid: string,
   userUuid: string,
   user?: IUser,
   targetUserUuid: string,
   targetUser?: IUser,
   userGroupUuid: string,
-  userGroup?: IUserGroup,
+  userGroup?: IUsersGroup,
   dtUnix: number,
-  status: UserGroup_InviteStatus,
+  status: UsersGroupInviteStatus,
 }
 
 // AUTHORIZATION...
@@ -215,19 +215,19 @@ export interface IAuthorization extends IModel {
   key: string,
   description: string,
 
-  usersGroups?: IUserGroup_Authorization[]
+  usersGroups?: IUsersGroupAuthorization[]
 }
 
 // ESSE MODELO DEVE TER A COLECAO REIMPLEMENTADA NOS APPS QUE CONECTAM NO DCENTER
 // EX. A RELACAO ENTRE OS GRUPOS DE USUARIOS E AS AUTORIZACOES REFERENTES AO APP ESCOLAR DEVEM FICAR NA LIB DO ESCOLAR
 // EX. A RELACAO ENTRE OS GRUPOS DE USUARIOS E AS AUTORIZACOES REFERENTES AO APP MESSENGER DEVEM FICAR NA LIB DO MESSENGER
-export interface IUserGroup_Authorization extends IModel {
+export interface IUsersGroupAuthorization extends IModel {
   uuid: string,
 
   authorizationKey: string,
   authorization?: IAuthorization,
   userGroupUuid: string,
-  userGroup?: IUserGroup,
+  userGroup?: IUsersGroup,
 }
 
 // ...AUTHORIZATION
@@ -242,13 +242,25 @@ export interface IIntegrationClient extends IModel {
   secret: string,
   active?: boolean,
 
-  authorizations?: IIntegrationClient_Authorization[]
+  authorizations?: IIntegrationClientAuthorization[]
 }
 
-export interface IIntegrationClient_Authorization extends IModel {
+export interface IIntegrationClientAuthorization extends IModel {
   uuid: string,
   authorizationKey: string,
   authorization?: IAuthorization,
   integrationClientUuid: string,
   integrationClient?: IIntegrationClient,
+}
+
+export const AgentType = {
+  user: 0,
+  integrationClient: 1,
+} as const
+export type AgentType = typeof AgentType[keyof typeof AgentType]
+
+export type Agent = {
+  uuid: string,
+  type: AgentType,
+  data?: IUserSharedData | IIntegrationClient
 }

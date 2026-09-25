@@ -48,8 +48,8 @@ export class LegalPersonUtils {
       )
       // addreses
       && !partialInstance.addresses?.some(a =>
-        !a.cityUuid
-        || !a.street
+        // !a.cityUuid TODO: region
+        !a.street
         || !a.number
         || !a.postalCode
       )
