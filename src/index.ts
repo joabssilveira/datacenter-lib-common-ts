@@ -62,6 +62,7 @@ import {
   ApplicationError,
   AuthenticationError,
   AuthorizationError,
+  NotFoundError,
 } from './errors'
 
 // license
@@ -192,6 +193,7 @@ export {
   AuthenticationTokenDataProviders,
   AuthenticationType,
   AuthorizationError,
+  NotFoundError,
   AuthorizationKeys,
   AuthorizationsApiClient,
   BloodType,
