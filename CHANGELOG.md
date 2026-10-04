@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.3.10...v1.4.0) (2026-10-04)
+
+
+### Features
+
+* hub and outbox features ([236e330](https://github.com/joabssilveira/datacenter-lib-common-ts/commit/236e330d15d70336018633f90e08c180a81ab3d3))
+
 ### [1.3.10](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.3.9...v1.3.10) (2026-09-25)
 
 ### [1.3.9](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.3.8...v1.3.9) (2026-09-21)
