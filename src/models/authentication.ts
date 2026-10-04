@@ -1,6 +1,7 @@
 import type { JwtPayload } from "jsonwebtoken"
 import type { IUserSharedData } from "."
 
+// AuthenticationType
 export const AuthenticationType = {
   default: 0,
   uuid: 1,

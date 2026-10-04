@@ -1,5 +1,5 @@
-export const LicenseKeys = {
-  workgroups: 'dcenter-workgroups',
-  workgroupsUnits: 'dcenter-workgroups-units',
-  userSharing: 'dcenter-user-sharing',
-}
+// export const LicenseKeys = {
+//   workgroups: 'dcenter-workgroups',
+//   workgroupsUnits: 'dcenter-workgroups-units',
+//   userSharing: 'dcenter-user-sharing',
+// }

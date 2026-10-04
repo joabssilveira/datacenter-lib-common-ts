@@ -20,5 +20,9 @@ export const ApiRoutesNames = {
   integrationClient_authorizations: '/integration-clients-authorizations',
 
   identityDocuments: '/identity-documents',
-  identityDocumentsId: '/identity-documents/:id'
+  identityDocumentsId: '/identity-documents/:id',
+
+  // hub
+  hubSettings: '/hub-settings',
+  hubSettingsId: '/hub-settings/:id'
 }

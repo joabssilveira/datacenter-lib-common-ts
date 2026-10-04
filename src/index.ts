@@ -15,6 +15,9 @@ import {
   AuthorizationsApiClient,
 } from './apiClient/authorizations'
 import {
+  HubSettingsApiClient,
+} from './apiClient/hubSettings'
+import {
   IdentityDocumentsApiClient,
 } from './apiClient/identityDocuments'
 import {
@@ -54,10 +57,17 @@ import {
   AuthAppRoutesNames,
 } from './authApp'
 
-// license
+// errors
 import {
-  LicenseKeys,
-} from './license'
+  ApplicationError,
+  AuthenticationError,
+  AuthorizationError,
+} from './errors'
+
+// license
+// import {
+//   LicenseKeys,
+// } from './license'
 
 // models
 
@@ -82,6 +92,10 @@ import {
 import {
   AuthorizationKeys,
 } from './models/authorizations'
+
+import {
+  type IHubSetting,
+} from './models/hub'
 
 // models/index
 import {
@@ -128,6 +142,18 @@ import {
   MaritalStatus,
 } from './models/legalPerson'
 
+import {
+  type IOutboxEvent,
+  type IOutboxEventPayloadUserCreated,
+  type IOutboxEventPayloadWorkgroupCreated,
+  OutboxEventStatus,
+  OutboxEventType,
+  type IOutboxEventPayloadUserUpdated,
+  type IOutboxEventPayloadWorkgroupRemoved,
+  type IOutboxEventListenerProcess, type IOutboxEventNotifyPayload,
+  OutboxEventListenerProcessStatus,
+} from './models/outbox'
+
 // models/region
 // import type { } from './models/region'
 
@@ -159,10 +185,13 @@ export {
   AgentType,
   ApiRequestHeaders,
   ApiRoutesNames,
+  ApplicationError,
   AuthAppRoutesNames,
+  AuthenticationError,
   AuthenticationsApiClient,
   AuthenticationTokenDataProviders,
   AuthenticationType,
+  AuthorizationError,
   AuthorizationKeys,
   AuthorizationsApiClient,
   BloodType,
@@ -176,6 +205,7 @@ export {
   getCrudAuthFromTokenData,
   Handedness,
   HealthConditionType,
+  HubSettingsApiClient,
   IdentityDocumentsApiClient,
   IntegrationClient_AuthorizationsApiClient,
   IntegrationClientsApiClient,
@@ -183,9 +213,9 @@ export {
   LegalPersonTypeOptions,
   LegalPersonTypes,
   LegalPersonUtils,
-  LicenseKeys,
-  MaritalStatus,
-  User,
+  // LicenseKeys,
+  MaritalStatus, OutboxEventStatus,
+  OutboxEventType, User,
   Users_GroupsApiClient,
   UsersApiClient,
   UsersGroupInviteStatus,
@@ -196,6 +226,11 @@ export {
   WorkgroupsApiClient,
   WorkgroupUnitsApiClient,
   WorkgroupUnitUtils,
+  OutboxEventListenerProcessStatus,
+  type IOutboxEventListenerProcess, 
+  type IOutboxEventNotifyPayload,
+  type IOutboxEventPayloadWorkgroupRemoved,
+  type IOutboxEventPayloadUserUpdated,
   type AuthenticationTokenDataLocal,
   type DatacenterApiRequestGetOptions,
   type DatacenterCrudAuthTokenDataDefault,
@@ -214,6 +249,7 @@ export {
   type ICompany,
   type IEthnicity,
   type IHealthConditionCatalog,
+  type IHubSetting,
   type IIdentityDocument,
   type IIdentityDocumentIssuer,
   type IIntegrationClient,
@@ -222,7 +258,10 @@ export {
   type ILegalPersonAddress,
   type ILegalPersonIdentityDocument,
   type IMedication,
-  type IModel,
+  type IModel, 
+  type IOutboxEvent,
+  type IOutboxEventPayloadUserCreated,
+  type IOutboxEventPayloadWorkgroupCreated, 
   type IPerson,
   type IPersonHealth,
   type IPersonHealthCondition,

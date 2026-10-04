@@ -1,17 +1,19 @@
-// import type { CheckLicenseResponseItemStatus } from 'licensemanager-lib-common-ts'
 import type { IAuthentication } from "./authentication"
 import type { IIdentityDocument, ILegalPerson } from './legalPerson'
 
 export interface IModel {
-  created_at: Date,
-  updated_at: Date,
-  deleted_at?: Date,
+  created_at: string,
+  updated_at: string,
+  deleted_at?: string,
   note?: string,
 }
 
 export interface IWorkgroup extends IModel {
   uuid: string,
   name: string,
+
+  ownerUuid: string,
+  owner?: IUser,
 
   legalPersons?: ILegalPerson[]
   integrationClients?: IIntegrationClient[]
@@ -52,6 +54,8 @@ export interface IUser extends IModel {
   receivedInvites?: IUsersGroupInvite[],
   sentInvites?: IUsersGroupInvite[],
   authentications?: IAuthentication[],
+
+  workgroups?: IWorkgroup[]
 }
 
 export class User implements IUser {
@@ -65,9 +69,9 @@ export class User implements IUser {
   legalPersonUuid?: string | undefined
   legalPerson?: ILegalPerson | undefined
   groups?: IUserGroup[] | undefined
-  created_at: Date
-  updated_at: Date
-  deleted_at?: Date | undefined
+  created_at: string
+  updated_at: string
+  deleted_at?: string | undefined
 
   constructor(data: {
     uuid: string,
@@ -80,9 +84,9 @@ export class User implements IUser {
     legalPersonUuid?: string | undefined,
     legalPerson?: ILegalPerson | undefined,
     groups?: IUserGroup[] | undefined,
-    created_at: Date,
-    updated_at: Date,
-    deleted_at?: Date | undefined,
+    created_at: string,
+    updated_at: string,
+    deleted_at?: string | undefined,
   }) {
     this.uuid = data.uuid
     this.name = data.name
