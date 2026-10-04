@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.4.0...v1.4.1) (2026-10-04)
+
+
+### Bug Fixes
+
+* export notfounderror to index ([cfab01b](https://github.com/joabssilveira/datacenter-lib-common-ts/commit/cfab01b1ff2716f5188c6eacd7265e3d614b0eaf))
+
 ## [1.4.0](https://github.com/joabssilveira/datacenter-lib-common-ts/compare/v1.3.10...v1.4.0) (2026-10-04)
 
 
