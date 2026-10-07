@@ -63,6 +63,7 @@ import {
   AuthenticationError,
   AuthorizationError,
   NotFoundError,
+  PaymentRequiredError,
 } from './errors'
 
 // license
@@ -182,6 +183,7 @@ import {
 } from './utils/workgroupUnit'
 
 export {
+  PaymentRequiredError,
   Agent,
   AgentType,
   ApiRequestHeaders,

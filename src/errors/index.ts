@@ -27,3 +27,10 @@ export class NotFoundError extends ApplicationError {
     this.name = 'NotFoundError'
   }
 }
+
+export class PaymentRequiredError extends ApplicationError {
+  constructor(message = 'Pagamento requerido') {
+    super(message)
+    this.name = 'PaymentRequiredError'
+  }
+}
