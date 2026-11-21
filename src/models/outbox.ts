@@ -1,8 +1,9 @@
 export const OutboxEventType = {
-  userCreated: 'user_created',
-  userUpdated: 'user_updated',
-  workgroupCreated: 'workgroup_created',
-  workgroupRemoved: 'workgroup_removed',
+  userCreated: 'user_created', // notificando que foi criado
+  userUpdated: 'user_updated', // notificando que foi atualizado
+  workgroupCreated: 'workgroup_created', // notificando que foi criado
+  workgroupUpdated: 'workgroup_updated', // notificando que foi alterado
+  workgroupRemoved: 'workgroup_removed', // notificando que foi removido
 } as const
 export type OutboxEventType = typeof OutboxEventType[keyof typeof OutboxEventType]
 
@@ -19,6 +20,12 @@ export interface IOutboxEventPayloadUserUpdated {
 export interface IOutboxEventPayloadWorkgroupCreated {
   uuid: string,
   ownerUuid: string,
+  name: string,
+}
+
+export interface IOutboxEventPayloadWorkgroupUpdated {
+  uuid: string,
+  name: string,
 }
 
 export interface IOutboxEventPayloadWorkgroupRemoved {
@@ -28,30 +35,24 @@ export interface IOutboxEventPayloadWorkgroupRemoved {
 // 
 
 export const OutboxEventStatus = {
-  // pending: 'pending',
-  // processing: 'processing',
-  // processed: 'processed',
-  // failed: 'failed',
   valid: 'valid',
   canceled: 'canceled',
 } as const
 export type OutboxEventStatus = typeof OutboxEventStatus[keyof typeof OutboxEventStatus]
 
-export interface IOutboxEvent {
-  id: string,
-  idempotencyKey: string, // unique where status in peding or processing
-  eventType: OutboxEventType,
-  payload: IOutboxEventPayloadUserCreated
+export interface IOutboxEvent<
+  T = OutboxEventType,
+  P = IOutboxEventPayloadUserCreated
   | IOutboxEventPayloadUserUpdated
   | IOutboxEventPayloadWorkgroupCreated
   | IOutboxEventPayloadWorkgroupRemoved,
+> {
+  id: string,
+  idempotencyKey: string, // unique where status in peding or processing
+  eventType: T,
+  payload: P,
   status: OutboxEventStatus,
   createdAt: Date,
-  // processedAt: Date,
-  // retryCount: number,
-  // lastError: string,
-  // correlationId: string,
-
   listenerProcesses?: IOutboxEventListenerProcess[]
 }
 
@@ -67,7 +68,7 @@ export interface IOutboxEventListenerProcess {
   listenerId: string,
   outboxEventId: string,
   outboxEvent?: IOutboxEvent,
-  
+
   status: OutboxEventListenerProcessStatus,
   createdAt: Date,
   processedAt: Date,
@@ -77,6 +78,6 @@ export interface IOutboxEventListenerProcess {
 }
 
 export interface IOutboxEventNotifyPayload {
-  id: string, 
+  id: string,
   event_type: string,
 }

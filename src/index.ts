@@ -64,6 +64,7 @@ import {
   AuthorizationError,
   NotFoundError,
   PaymentRequiredError,
+  BadRequestError,
 } from './errors'
 
 // license
@@ -95,8 +96,18 @@ import {
   AuthorizationKeys,
 } from './models/authorizations'
 
+// models/dto
 import {
+  type IWorkgroupBulkUpdate,
+} from './models/dto'
+
+// models/hub
+import {
+  HubSettings,
+  HubSettingsGroups,
   type IHubSetting,
+  type IHubSettingDcWebhook,
+  type IHubSettingDcWebhooks,
 } from './models/hub'
 
 // models/index
@@ -118,6 +129,7 @@ import {
   User,
   UsersGroupInviteStatus,
   UsersGroupInviteStatusUtils,
+
 } from './models'
 
 // models/legalPerson
@@ -144,16 +156,26 @@ import {
   MaritalStatus,
 } from './models/legalPerson'
 
+// models/license
+import {
+  LicenseSubscriptionStatus,
+  licenseSubscriptionStatusOptions,
+  type ILicenseData,
+  licenseSubscriptionStatusActive,
+} from './models/license'
+
 import {
   type IOutboxEvent,
+  type IOutboxEventListenerProcess,
+  type IOutboxEventNotifyPayload,
   type IOutboxEventPayloadUserCreated,
+  type IOutboxEventPayloadUserUpdated,
   type IOutboxEventPayloadWorkgroupCreated,
+  type IOutboxEventPayloadWorkgroupRemoved,
+  OutboxEventListenerProcessStatus,
   OutboxEventStatus,
   OutboxEventType,
-  type IOutboxEventPayloadUserUpdated,
-  type IOutboxEventPayloadWorkgroupRemoved,
-  type IOutboxEventListenerProcess, type IOutboxEventNotifyPayload,
-  OutboxEventListenerProcessStatus,
+  type IOutboxEventPayloadWorkgroupUpdated,
 } from './models/outbox'
 
 // models/region
@@ -183,7 +205,10 @@ import {
 } from './utils/workgroupUnit'
 
 export {
-  PaymentRequiredError,
+  type IWorkgroupBulkUpdate,
+  type IOutboxEventPayloadWorkgroupUpdated,
+  licenseSubscriptionStatusActive,
+  BadRequestError,
   Agent,
   AgentType,
   ApiRequestHeaders,
@@ -195,7 +220,6 @@ export {
   AuthenticationTokenDataProviders,
   AuthenticationType,
   AuthorizationError,
-  NotFoundError,
   AuthorizationKeys,
   AuthorizationsApiClient,
   BloodType,
@@ -209,7 +233,9 @@ export {
   getCrudAuthFromTokenData,
   Handedness,
   HealthConditionType,
+  HubSettings,
   HubSettingsApiClient,
+  HubSettingsGroups,
   IdentityDocumentsApiClient,
   IntegrationClient_AuthorizationsApiClient,
   IntegrationClientsApiClient,
@@ -217,9 +243,16 @@ export {
   LegalPersonTypeOptions,
   LegalPersonTypes,
   LegalPersonUtils,
-  // LicenseKeys,
-  MaritalStatus, OutboxEventStatus,
-  OutboxEventType, User,
+  LicenseSubscriptionStatus,
+  licenseSubscriptionStatusOptions,
+  type ILicenseData,
+  MaritalStatus,
+  NotFoundError,
+  OutboxEventListenerProcessStatus,
+  OutboxEventStatus,
+  OutboxEventType,
+  PaymentRequiredError,
+  User,
   Users_GroupsApiClient,
   UsersApiClient,
   UsersGroupInviteStatus,
@@ -230,11 +263,6 @@ export {
   WorkgroupsApiClient,
   WorkgroupUnitsApiClient,
   WorkgroupUnitUtils,
-  OutboxEventListenerProcessStatus,
-  type IOutboxEventListenerProcess, 
-  type IOutboxEventNotifyPayload,
-  type IOutboxEventPayloadWorkgroupRemoved,
-  type IOutboxEventPayloadUserUpdated,
   type AuthenticationTokenDataLocal,
   type DatacenterApiRequestGetOptions,
   type DatacenterCrudAuthTokenDataDefault,
@@ -254,6 +282,8 @@ export {
   type IEthnicity,
   type IHealthConditionCatalog,
   type IHubSetting,
+  type IHubSettingDcWebhook,
+  type IHubSettingDcWebhooks,
   type IIdentityDocument,
   type IIdentityDocumentIssuer,
   type IIntegrationClient,
@@ -262,10 +292,14 @@ export {
   type ILegalPersonAddress,
   type ILegalPersonIdentityDocument,
   type IMedication,
-  type IModel, 
+  type IModel,
   type IOutboxEvent,
+  type IOutboxEventListenerProcess,
+  type IOutboxEventNotifyPayload,
   type IOutboxEventPayloadUserCreated,
-  type IOutboxEventPayloadWorkgroupCreated, 
+  type IOutboxEventPayloadUserUpdated,
+  type IOutboxEventPayloadWorkgroupCreated,
+  type IOutboxEventPayloadWorkgroupRemoved,
   type IPerson,
   type IPersonHealth,
   type IPersonHealthCondition,

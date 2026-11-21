@@ -1,5 +1,6 @@
 import type { IAuthentication } from "./authentication"
 import type { IIdentityDocument, ILegalPerson } from './legalPerson'
+import { ILicenseData } from "./license"
 
 export interface IModel {
   created_at: string,
@@ -18,13 +19,11 @@ export interface IWorkgroup extends IModel {
   legalPersons?: ILegalPerson[]
   integrationClients?: IIntegrationClient[]
 
-  // licenseData?: {
-  //   status: CheckLicenseResponseItemStatus,
-  // }
-
   identityDocuments?: IIdentityDocument[],
   usersGroups?: IUsersGroup[],
   workgroupUnits?: IWorkgroupUnit[],
+
+  licenseData?: ILicenseData
 }
 
 export interface IWorkgroupUnit extends IModel {
